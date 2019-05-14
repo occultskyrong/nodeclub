@@ -1,7 +1,9 @@
-var models  = require('../models');
-var User    = models.User;
-var utility = require('utility');
-var uuid    = require('node-uuid');
+const utility = require('utility');
+const uuid = require('node-uuid');
+
+const models = require('../models');
+
+const { User } = models;
 
 /**
  * 根据用户名列表查找用户列表
@@ -11,7 +13,7 @@ var uuid    = require('node-uuid');
  * @param {Array} names 用户名列表
  * @param {Function} callback 回调函数
  */
-exports.getUsersByNames = function (names, callback) {
+const getUsersByNames = (names, callback) => {
   if (names.length === 0) {
     return callback(null, []);
   }
@@ -26,8 +28,8 @@ exports.getUsersByNames = function (names, callback) {
  * @param {String} loginName 登录名
  * @param {Function} callback 回调函数
  */
-exports.getUserByLoginName = function (loginName, callback) {
-  User.findOne({'loginname': new RegExp('^'+loginName+'$', "i")}, callback);
+const getUserByLoginName = (loginName, callback) => {
+  User.findOne({ loginname: new RegExp(`^${loginName}$`, 'i') }, callback);
 };
 
 /**
@@ -38,11 +40,11 @@ exports.getUserByLoginName = function (loginName, callback) {
  * @param {String} id 用户ID
  * @param {Function} callback 回调函数
  */
-exports.getUserById = function (id, callback) {
+const getUserById = (id, callback) => {
   if (!id) {
     return callback();
   }
-  User.findOne({_id: id}, callback);
+  User.findOne({ _id: id }, callback);
 };
 
 /**
@@ -53,8 +55,8 @@ exports.getUserById = function (id, callback) {
  * @param {String} email 邮箱地址
  * @param {Function} callback 回调函数
  */
-exports.getUserByMail = function (email, callback) {
-  User.findOne({email: email}, callback);
+const getUserByMail = (email, callback) => {
+  User.findOne({ email }, callback);
 };
 
 /**
@@ -65,8 +67,8 @@ exports.getUserByMail = function (email, callback) {
  * @param {Array} ids 用户ID列表
  * @param {Function} callback 回调函数
  */
-exports.getUsersByIds = function (ids, callback) {
-  User.find({'_id': {'$in': ids}}, callback);
+const getUsersByIds = (ids, callback) => {
+  User.find({ _id: { $in: ids } }, callback);
 };
 
 /**
@@ -78,7 +80,7 @@ exports.getUsersByIds = function (ids, callback) {
  * @param {Object} opt 选项
  * @param {Function} callback 回调函数
  */
-exports.getUsersByQuery = function (query, opt, callback) {
+const getUsersByQuery = (query, opt, callback) => {
   User.find(query, '', opt, callback);
 };
 
@@ -91,28 +93,36 @@ exports.getUsersByQuery = function (query, opt, callback) {
  * @param {String} key 激活码
  * @param {Function} callback 回调函数
  */
-exports.getUserByNameAndKey = function (loginname, key, callback) {
-  User.findOne({loginname: loginname, retrieve_key: key}, callback);
+const getUserByNameAndKey = (loginname, key, callback) => {
+  User.findOne({ loginname, retrieve_key: key }, callback);
 };
 
-exports.newAndSave = function (name, loginname, pass, email, avatar_url, active, callback) {
-  var user         = new User();
-  user.name        = loginname;
-  user.loginname   = loginname;
-  user.pass        = pass;
-  user.email       = email;
-  user.avatar      = avatar_url;
-  user.active      = active || false;
+const newAndSave = (name, loginname, pass, email, avatar_url, active, callback) => {
+  const user = new User();
+  user.name = loginname;
+  user.loginname = loginname;
+  user.pass = pass;
+  user.email = email;
+  user.avatar = avatar_url;
+  user.active = active || false;
   user.accessToken = uuid.v4();
 
   user.save(callback);
 };
 
-var makeGravatar = function (email) {
-  return 'http://www.gravatar.com/avatar/' + utility.md5(email.toLowerCase()) + '?size=48';
-};
-exports.makeGravatar = makeGravatar;
+const makeGravatar = email => `http://www.gravatar.com/avatar/${utility.md5(email.toLowerCase())}?size=48`;
 
-exports.getGravatar = function (user) {
-  return user.avatar || makeGravatar(user);
+const getGravatar = user => user.avatar || makeGravatar(user);
+
+module.exports = {
+  getUsersByQuery,
+  getGravatar,
+  makeGravatar,
+  newAndSave,
+  getUserByNameAndKey,
+  getUsersByNames,
+  getUserByLoginName,
+  getUserById,
+  getUsersByIds,
+  getUserByMail,
 };

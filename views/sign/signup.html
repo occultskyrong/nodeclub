@@ -22,7 +22,7 @@
       <% } else { %>
       <form id='signup_form' class='form-horizontal' action='/signup' method='post'>
         <div class='control-group'>
-          <label class='control-label' for='loginname'>用户名</label>
+          <label class='control-label' for='loginname'>用户名 <span style='color:red'>*</span></label>
 
           <div class='controls'>
             <% if (typeof(loginname) !== 'undefined') { %>
@@ -30,17 +30,18 @@
             <% } else { %>
             <input class='input-xlarge' id='loginname' name='loginname' size='30' type='text' value='' />
             <% } %>
+            <span style='color: red;'> 支持≥3位的，中文、英文、数字、_ 、- </span>
           </div>
         </div>
         <div class='control-group'>
-          <label class='control-label' for='pass'>密码</label>
+          <label class='control-label' for='pass'>密码 <span style='color:red'>*</span></label>
 
           <div class='controls'>
             <input class='input-xlarge' id='pass' name='pass' size='30' type='password' />
           </div>
         </div>
         <div class='control-group'>
-          <label class='control-label' for='re_pass'>确认密码</label>
+          <label class='control-label' for='re_pass'>确认密码 <span style='color:red'>*</span></label>
 
           <div class='controls'>
             <input class='input-xlarge' id='re_pass' name='re_pass' size='30' type='password' />

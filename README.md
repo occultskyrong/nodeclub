@@ -37,6 +37,8 @@ make build
 # 6. `$ node app.js`
 # 7. visit `http://localhost:3000`
 # 8. done!
+
+scp config.js root@vps:/root/code/nodeclub/
 ```
 
 ## 测试
