@@ -8,7 +8,7 @@ const secret = require('./secret');
 
 const env = process.env.NODE_ENV || 'development';
 
-const isProduction = env === 'production';
+const isProduction = () => env === 'production';
 
 const config = {
   // debug 为 true 时，用于本地调试；即生产环境关闭调试模式
