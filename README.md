@@ -1,30 +1,44 @@
-Nodeclub
-=
+# CMS论坛
 
-[![build status][travis-image]][travis-url]
-[![codecov.io][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
-[![node version][node-image]][node-url]
+## 1. 目录
 
-[travis-image]: https://img.shields.io/travis/cnodejs/nodeclub/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cnodejs/nodeclub
-[codecov-image]: https://img.shields.io/codecov/c/github/cnodejs/nodeclub/master.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/cnodejs/nodeclub?branch=master
-[david-image]: https://img.shields.io/david/cnodejs/nodeclub.svg?style=flat-square
-[david-url]: https://david-dm.org/cnodejs/nodeclub
-[node-image]: https://img.shields.io/badge/node.js-%3E=_4.2-green.svg?style=flat-square
-[node-url]: http://nodejs.org/download/
+<!-- TOC -->
 
-## 介绍
+- [1. 目录](#1-目录)
+- [2. 介绍](#2-介绍)
+- [3. 环境说明](#3-环境说明)
+- [4. 环境安装](#4-环境安装)
+- [5. 线上部署](#5-线上部署)
+- [6. 测试](#6-测试)
+- [7. 贡献](#7-贡献)
+- [8. License](#8-license)
 
-Nodeclub 是使用 **Node.js** 和 **MongoDB** 开发的社区系统，界面优雅，功能丰富，小巧迅速，
-已在Node.js 中文技术社区 [CNode(http://cnodejs.org)](http://cnodejs.org) 得到应用，但你完全可以用它搭建自己的社区。
+<!-- /TOC -->
 
-## 安装部署
+## 2. 介绍
 
-*不保证 Windows 系统的兼容性*
+基于 [`Nodeclub`](https://github.com/cnodejs/nodeclub)
+某些功能点有所改动，包括但不限于：
 
-线上跑的是 [Node.js](https://nodejs.org) v8.12.0，[MongoDB](https://www.mongodb.org) 是 v4.0.3，[Redis](http://redis.io) 是 v4.0.9。
+- 注册&登录
+  - 去除`GitHub`注册+登录的选项
+  - 去除注册时必须填写邮箱的限制
+
+## 3. 环境说明
+
+生产环境：
+
+- `CentOS`
+- `Node v10.15.3`
+  - `NPM 6.4.1`
+- `MongoDB v4.0.9`
+  - pwd: `/usr/local/mongodb/`
+  - 启动命令: `/usr/local/mongodb/bin/mongod --config mongodb.conf`
+- `Redis 5.0.4`
+  - pwd: `/usr/local/redis-stable`
+  - 启动命令: `/usr/local/redis-stable/src/redis-server 127.0.0.1:6379`
+
+## 4. 环境安装
 
 ```bash
 # 1. 安装 `Node.js[必须]` `MongoDB[必须]` `Redis[必须]`
@@ -38,27 +52,41 @@ make build
 # 7. visit `http://localhost:3000`
 # 8. done!
 
-scp config.js root@vps:/root/code/nodeclub/
+# 更新线上 密钥配置文件
+scp ~/code/github/nodeclub/config/secret.js root@vps:/root/code/nodeclub/config/
 ```
 
-## 测试
+## 5. 线上部署
+
+```bash
+# 访问mongo
+/usr/local/mongodb/bin/mongo
+# 查看数据库
+show dbs;
+# 使用数据库
+use database_name;
+# 查看表列表
+show collections;
+# 查看索引
+db.users.getIndexes();
+# 删除索引，根据name删除
+db.users.dropIndex('loginname_1');
+```
+
+## 6. 测试
 
 跑测试
 
 ```bash
-$ make test
+make test
 ```
 
 跑覆盖率测试
 
 ```bash
-$ make test-cov
+make test-cov
 ```
 
-## 贡献
-
-有任何意见或建议都欢迎提 issue，或者直接提给 [@alsotang](https://github.com/alsotang)
-
-## License
+## 8. License
 
 MIT

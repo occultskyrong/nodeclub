@@ -1,6 +1,5 @@
-# 删除config，防止密码泄露
-config.js
-config.secret.js
+# 删除config/secret文件，防止密码泄露
+config/secret.js
 
 # 文件
 .cov
