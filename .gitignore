@@ -1,3 +1,8 @@
+# 删除config，防止密码泄露
+config.js
+config.secret.js
+
+# 文件
 .cov
 coverage
 node_modules
