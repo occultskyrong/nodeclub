@@ -22,7 +22,13 @@ desktop.ini
 *.log
 
 .idea
-public/upload/*
+
+# 上传的文件文件
+public/upload/*.gif
+public/upload/*.jpg
+public/upload/*.jpeg
+public/upload/*.bmp
+public/upload/*.png
 
 *.sublime-project
 *.sublime-workspace
