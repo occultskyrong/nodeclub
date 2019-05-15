@@ -133,7 +133,7 @@ exports.put = function (req, res, next) {
   if (title === '') {
     editError = '标题不能是空的。';
   } else if (title.length < 5 || title.length > 100) {
-    editError = '标题字数太多或太少。';
+    editError = '标题字数长度限制为5-100个字';
   } else if (!tab || allTabs.indexOf(tab) === -1) {
     editError = '必须选择一个版块。';
   } else if (content === '') {
