@@ -175,8 +175,7 @@ if (!module.parent) {
   app.listen(config.port, () => {
     logger.info('NodeClub listening on port', config.port);
     logger.info('God bless love....');
-    logger.info(`You can debug your app with http://${  config.hostname  }:${  config.port}`);
-    logger.info('');
+    logger.info(`You can debug your app with http://${config.hostname}:${config.port}`);
   });
 }
 

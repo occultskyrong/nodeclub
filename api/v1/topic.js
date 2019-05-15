@@ -141,8 +141,8 @@ var create = function (req, res, next) {
   var editError;
   if (title === '') {
     editError = '标题不能为空';
-  } else if (title.length < 5 || title.length > 100) {
-    editError = '标题字数长度限制为5-100个字';
+  } else if (title.length < 3 || title.length > 20) {
+    editError = '标题字数长度限制为 3-20 个字';
   } else if (!tab || !_.includes(allTabs, tab)) {
     editError = '必须选择一个版块';
   } else if (content === '') {
@@ -206,8 +206,8 @@ exports.update = function (req, res, next) {
       var editError;
       if (title === '') {
         editError = '标题不能是空的。';
-      } else if (title.length < 5 || title.length > 100) {
-        editError = '标题字数太多或太少。';
+      } else if (title.length < 3 || title.length > 20) {
+        editError = '题字数长度限制为 3-20 个字。';
       } else if (!tab || !_.includes(allTabs, tab)) {
         editError = '必须选择一个版块。';
       }

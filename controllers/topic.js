@@ -132,8 +132,8 @@ exports.put = function (req, res, next) {
   var editError;
   if (title === '') {
     editError = '标题不能是空的。';
-  } else if (title.length < 5 || title.length > 100) {
-    editError = '标题字数长度限制为5-100个字';
+  } else if (title.length < 3 || title.length > 20) {
+    editError = '标题字数长度限制为 3-20 个字';
   } else if (!tab || allTabs.indexOf(tab) === -1) {
     editError = '必须选择一个版块。';
   } else if (content === '') {
@@ -221,7 +221,7 @@ exports.update = function (req, res, next) {
       if (title === '') {
         editError = '标题不能是空的。';
       } else if (title.length < 5 || title.length > 100) {
-        editError = '标题字数太多或太少。';
+        editError = '标题字数长度限制为 3-20 个字。';
       } else if (!tab) {
         editError = '必须选择一个版块。';
       }
@@ -441,34 +441,4 @@ exports.de_collect = function (req, res, next) {
       res.json({status: 'success'});
     });
   });
-};
-
-exports.upload = function (req, res, next) {
-  var isFileLimit = false;
-  req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-      file.on('limit', function () {
-        isFileLimit = true;
-
-        res.json({
-          success: false,
-          msg: 'File size too large. Max is ' + config.file_limit
-        })
-      });
-
-      store.upload(file, {filename: filename}, function (err, result) {
-        if (err) {
-          return next(err);
-        }
-        if (isFileLimit) {
-          return;
-        }
-        res.json({
-          success: true,
-          url: result.url,
-        });
-      });
-
-    });
-
-  req.pipe(req.busboy);
 };

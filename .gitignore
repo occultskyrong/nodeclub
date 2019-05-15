@@ -29,6 +29,11 @@ public/upload/*.jpg
 public/upload/*.jpeg
 public/upload/*.bmp
 public/upload/*.png
+public/tmp/*.gif
+public/tmp/*.jpg
+public/tmp/*.jpeg
+public/tmp/*.bmp
+public/tmp/*.png
 
 *.sublime-project
 *.sublime-workspace
