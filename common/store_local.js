@@ -2,6 +2,7 @@ const utility = require('utility');
 const path = require('path');
 const fs = require('fs');
 
+const logger = require('./logger');
 const config = require('../config');
 
 /**
@@ -23,7 +24,7 @@ const upload = (file, options, callback) => {
     const newFilename = fileMd5 + extname; // 文件实际名
     const filePath = path.join(uploadPath, newFilename); // 文件实际地址
     const exists = fs.existsSync(filePath); // 此文件是否已经上传过了
-    // console.info('临时文件路径:', tmpFilePath, '\n实际文件路径:', filePath, '\n是否已上传该文件:', exists);
+    logger.info('临时文件路径:', tmpFilePath, '\n实际文件路径:', filePath, '\n是否已上传该文件:', exists);
     if (!exists) { // 不存在，则移动临时文件
       fs.renameSync(tmpFilePath, filePath);
     } else { // 存在则删除临时文件

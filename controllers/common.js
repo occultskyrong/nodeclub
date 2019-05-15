@@ -1,5 +1,4 @@
-const store = require('../common/store');
-const { md5 } = require('../common/method');
+const { upload } = require('../common/store');
 const config = require('../config');
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
         });
       });
 
-      store.upload(file, { filename }, (err, result) => {
+      upload(file, { filename }, (err, result) => {
         if (err) {
           return next(err);
         }
