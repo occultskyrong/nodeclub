@@ -35,7 +35,7 @@ const config = {
   // 程序运行的端口
   host: 'www.xianzhen.vip', // 社区的域名
   port: 3000,
-  log_dir: path.join(__dirname, 'logs'),
+  log_dir: path.join(__dirname, '../logs'),
   // cdn host，如 http://cnodejs.qiniudn.com
   site_static_host: '', // 静态文件存储域名
   google_tracker_id: '', // 默认的Google tracker ID，自有站点请修改，申请地址：http://www.google.com/analytics/
