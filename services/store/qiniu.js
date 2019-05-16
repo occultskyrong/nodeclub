@@ -1,5 +1,5 @@
 const qn = require('qn');
-const config = require('../config');
+const config = require('../../config');
 
 // 7牛 client
 let qnClient = null;

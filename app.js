@@ -173,9 +173,10 @@ if (config.debug) {
 
 if (!module.parent) {
   app.listen(config.port, () => {
-    logger.info('NodeClub listening on port', config.port);
-    logger.info('God bless love....');
-    logger.info(`You can debug your app with http://${config.hostname}:${config.port}`);
+    const memory = process.memoryUsage().heapTotal / 1024 / 1024;
+    logger.info(`Website ${config.name} start on http://localhost:${config.port} , Memory useage : ${memory.toFixed(2)}M`);
+    logger.info(`You can browse on http://${config.hostname}`);
+    logger.debug(`Or you can debug on http://localhost:${config.port}`);
   });
 }
 

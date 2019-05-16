@@ -181,7 +181,7 @@
 
     this.uploader = WebUploader.create({
       swf: '/public/libs/webuploader/Uploader.swf',
-      server: `/upload?_csrf=${_csrf}`,
+      server: `/v2/upload?_csrf=${_csrf}`,
       pick: this.$uploadBtn[0],
       paste: document.body,
       dnd: this.$upload[0],

@@ -26,9 +26,13 @@ const search = require('./controllers/search');
 const configMiddleware = require('./middlewares/conf');
 const config = require('./config');
 
-const common=require('./controllers/common');
+// XXX:加载V2版本路由
+const v2Router = require('./api/v2');
 
 const router = express.Router();
+
+// NOTE:V2版本路由监听
+router.use('/v2', v2Router);
 
 // home page
 router.get('/', site.index);
@@ -72,9 +76,6 @@ router.post('/user/refresh_token', auth.userRequired, user.refreshToken); // 刷
 
 // message controler
 router.get('/my/messages', auth.userRequired, message.index); // 用户个人的所有消息页
-
-// NOTE:公用方法集
-router.post('/upload', auth.userRequired, common.upload); // 上传图片
 
 // topic
 
@@ -129,6 +130,5 @@ if (!config.debug) { // 这个兼容破坏了不少测试
     res.redirect(`/user/${req.params.name}`);
   });
 }
-
 
 module.exports = router;

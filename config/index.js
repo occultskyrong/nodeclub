@@ -24,8 +24,8 @@ const config = {
   site_headers: [
     '<meta name="author" content="occultskyrong" />',
   ],
-  site_logo: '/public/images/stzb_logo.webp', // default is `name`
-  site_icon: '/public/images/xianzhen_icon.png', // 默认没有 favicon, 这里填写网址
+  site_logo: '/public/images/xz_logo.jpeg', // default is `name`
+  site_icon: '/public/images/xz_icon.png', // 默认没有 favicon, 这里填写网址
   // 右上角的导航区
   site_navs: [
     // 格式 [ path, title, [target=''] ]
